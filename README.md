@@ -19,7 +19,6 @@ The project combines a 1.85" round touchscreen, ESPHome and Home Assistant into 
 - Touchscreen page navigation using horizontal swipes
 - Automatic page rotation
 - Short configurable pause after manual interaction
-- Built-in audio feedback when changing pages
 - Clean gauge-style UI
 
 ## 📊 Dashboard pages
@@ -47,7 +46,6 @@ After a manual swipe, automatic rotation is paused for **20 seconds**.
 
 When there is no manual interaction, the display automatically changes page every **5 seconds**.
 
-A short generated "whoosh" sound is played after a page change. No audio file is required; the sound is generated directly by the ESP32.
 
 ## 🏠 Home Assistant
 
@@ -98,14 +96,12 @@ The board provides the main components required by the project:
 - Capacitive CST816 touchscreen
 - QSPI display interface
 - I²C peripherals
-- PCM5101 audio DAC
 - Speaker connector
 - RTC connector
 - Battery connector
 - microSD card slot
 - USB-C
 
-The ESPHome configuration uses the ESP32-S3 with ESP-IDF and octal PSRAM.
 
 ### Enclosure
 
@@ -224,7 +220,6 @@ The touchscreen uses the CST816 controller.
 
 The display backlight is controlled through GPIO5.
 
-Audio is generated through the PCM5101 using I²S.
 
 ## 🎨 Display UI
 
@@ -242,34 +237,6 @@ The clock uses a traditional analogue watch-style layout with:
 - White hour and minute hands
 - Red second hand
 - Red centre hub
-
-## 📁 Repository structure
-
-A suggested GitHub repository layout:
-
-```text
-PUK-Waveshare-1.85/
-│
-├── README.md
-├── esphome/
-│   └── esp32-s3-dashboard.yaml
-│
-├── 3d/
-│   ├── front-bezel.stl
-│   ├── rear-housing.stl
-│   └── rear-cover.stl
-│
-├── images/
-│   ├── puk-dashboard.jpg
-│   ├── puk-clock.jpg
-│   ├── puk-solar.jpg
-│   ├── puk-battery.jpg
-│   ├── puk-weather.jpg
-│   ├── puk-salt.jpg
-│   └── puk-pcb.jpg
-│
-└── LICENSE
-```
 
 ## ⚙️ Configuration
 
@@ -296,18 +263,36 @@ color_depth: 16
 rotation: 0
 ```
 
-## 🔊 Audio
+## 📷 Project photos
 
-The project uses the board's PCM5101 audio path.
+### Complete PUK
 
-The page-change sound is generated in software as a short frequency sweep:
+![PUK dashboard](Images/housing%20frontring%20and%20esp.jpg)
 
-- 16 kHz
-- 16-bit
-- mono
-- approximately 150 ms
+### Clock
 
-This keeps the project self-contained without requiring an external sound file.
+![Clock screen](Images/klok.jpg)
+
+### Solar production
+
+![Solar screen](Images/solar.jpg)
+
+### Battery
+
+![Battery screen](Images/battery.jpg)
+
+### Weather
+
+![Weather screen](Images/weather.jpg)
+
+### Salt level
+
+![Salt level screen](Images/saltlevel.jpg)
+
+### ESP32-S3 board
+
+![ESP32-S3 board](Images/ESP.jpg)
+
 
 ## 🛠️ Customization
 
@@ -323,7 +308,6 @@ You can change:
 - Gauge colours
 - Fonts and font sizes
 - Display graphics
-- Audio feedback
 - Additional dashboard pages
 
 For example, the automatic page interval is currently:
@@ -341,22 +325,6 @@ The manual touch pause is currently:
 ```
 
 which corresponds to 20 seconds.
-
-## 📷 Project photos
-
-Place your project photos in the `images/` directory and update the filenames in this README.
-
-Recommended photos:
-
-1. Complete assembled PUK
-2. Clock screen
-3. Solar screen
-4. Battery screen
-5. Weather screen
-6. Salt level screen
-7. PCB / internal view
-8. Enclosure parts
-9. Wall-mounted example
 
 ## 🤝 Contributions
 
